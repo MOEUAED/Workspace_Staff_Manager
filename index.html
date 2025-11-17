@@ -3,9 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <title>Workspace Staff Manager</title>
 </head>
 <body>
-    
+    <header>
+        <nav>
+            <div class="icon">
+                <div>
+                    <i class="fa-solid fa-users"></i>
+                </div>
+                <div>
+                    <h1>
+                        WorkSphere
+                    </h1>
+                    <p>
+                        Gestion du personnel
+                    </p>
+                </div>
+            </div>
+            <div>
+                <p>
+                    <span>0</span> employé au total
+                </p>
+            </div>
+        </nav>
+    </header>
+    <main>
+
+        <section>
+            <div>
+                <i class="fa-solid fa-users"></i>
+                <p>employé Non assignés <span> 0  </span> </p>
+            </div>
+
+            <button>Ajouter un employé</button>
+
+            <div>
+                <img src="" alt="profile">
+                <p>Nom d'employé</p>
+                <p><small>roll</small></p>
+            </div>
+
+        </section>
+
+    <div class="" id="">
+      <div class="">
+        <div class="">
+          <h1>Ajouter un nouvel employé</h1>
+        </div>
+        <div class="">
+          <form action="">
+            <div>
+              <label for="">Nom complet</label>
+              <input type="text" placeholder="Ex : Dar Hamza" />
+            </div>
+            <div>
+              <label for="">Email :</label>
+              <input type="text" placeholder="Email@exemple.com" />
+            </div>
+            <div>
+              <label for="">Selecter le role </label>
+              <select name="" id="">
+                <option value="NULL" selected>--choisir le role--</option>
+                <option value="receptionniste">Réceptionnistes</option>
+                <option value="it">Techniciens IT</option>
+                <option value="securite">Agents de sécurité</option>
+                <option value="manager">Manager</option>
+                <option value="net">Nettoyage</option>
+                <option value="autre">Autres rôles</option>
+              </select>
+            </div>
+            <div>
+              <label for="">Telephone</label>
+              <input type="tel" />
+            </div>
+             
+            <div class="pics-label" >
+              <label for="photo">Photo URL</label>
+              <input
+                type="url"
+                id="photo"
+                name="photo"
+                placeholder="https://example.com/image.jpg" />
+            </div>
+
+            <div  >
+              <label>Gender</label><br>
+
+              <input type="radio" id="male" name="gender" value="male" />
+              <label for="male">Male</label>
+
+              <input type="radio" id="female" name="gender" value="female" />
+              <label for="female">Female</label>
+            </div>
+
+
+          </form>
+          <div>
+            <p>Expériences professionnelles</p>
+            <button>ajouter</button>
+          </div>
+          <form action="">
+            <h3>Expérience #1</h3>
+                <div>
+                    <label for="">Entreprise</label>
+                    <input type="text" placeholder="Yooucode">
+                </div>
+                <div>
+                    <label for="">Poste</label>
+                    <input type="text" placeholder="formateur">
+                </div>
+                <div>
+                    <label for="">Date de début</label>
+                    <input type="date">
+                </div>
+                <div>
+                    <label for="">Date de fin</label>
+                    <input type="date">
+                </div>
+          </form>
+          <div class="modal-footer">
+              <button>ajouter</button>
+              <button id="closeModal" >cancel</button>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    </main>
+    <footer>
+
+    </footer>
+    <script src="assets/js/script.js" ></script>
 </body>
 </html>
