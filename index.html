@@ -1,279 +1,311 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <title>Workspace Staff Manager</title>
-</head>
-<body>
-    <header>
-        <nav>
-            <div class="icon">
-                <div class="icon-logo">
-                    <i class="fa-solid fa-users"></i>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+        <link rel="stylesheet" href="assets/css/style.css">
+        <title>Workspace Staff Manager</title>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div class="icon">
+                    <div class="icon-logo">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div class="icon-text">
+                        <h1>
+                            WorkSphere
+                        </h1>
+                        <p>
+                            Gestion du personnel
+                        </p>
+                    </div>
                 </div>
-                <div class="icon-text">
-                    <h1>
-                        WorkSphere
-                    </h1>
+                <div>
                     <p>
-                        Gestion du personnel
+                        <span>0</span> employé au total
                     </p>
                 </div>
-            </div>
-            <div>
-                <p>
-                    <span>0</span> employé au total
-                </p>
-            </div>
-        </nav>
-    </header>
-    <main>
+            </nav>
+        </header>
+        <main>
 
-        <section>
-            <div>
-                <i class="fa-solid fa-users"></i>
-                <p>employé Non assignés <span> 0  </span> </p>
-            </div>
-
-            <button>Ajouter un employé</button>
-
-            <div>
-                <img src="assets/img/avatar_h3.jpg" style="width: 100px; border-radius: 50%;" alt="profile" >
-                <p  >Nom_complet</p>
-                <p><small>roll</small></p>
-            </div>
-
-            <div>
-                <div>
-                    <h2>Profil de l'employé</h2>
-                    <button><i class="fa-solid fa-xmark"></i></button>
+            <section class="side-bar">
+                <div class="title-logo">
+                    <i class="fa-solid fa-users empl-icon"></i>
+                    <p>employé Non assignés <span> 0  </span> </p>
                 </div>
-                <div>
-                    <img src="" alt="">
+
+                <button>Ajouter un employé</button>
+
+                <div class="profil">
+                    <img src="assets/img/avatar_h3.jpg" alt="profile" title="profile-pic">
                     <div>
-                        <h1>Nom d'employé</h1>
-                        <div>
-                            role
-                        </div>
-                        <p>email@gmail</p>
-                        Telephone
+                        <p class="nom">Profile-pics</p>
+                        <p class="role">role</p>
                     </div>
+                    <button class="remove">X</button>
                 </div>
-                <div>
-                    <h2>Expériences professionnelles</h2>
+
+
+
+                <div class="modal-container ">
                     <div>
-                        <h5>Entreprise</h5>
-                        <p>Role</p>
+                        <h2>Profil de l'employé</h2>
+                        <button><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                    <div>
+                        <img src="" alt="">
                         <div>
-                            date :
+                            <h1>Nom d'employé</h1>
+                            <div>
+                                role
+                            </div>
+                            <p>email@gmail</p>
+                            Telephone
                         </div>
                     </div>
-                </div>
-            </div>
-
-        </section>
-
-        <div class="main-content">
-            <h1>Plan d'étage</h1>
-            <p>Cliquez sur le bouton + pour assigner un employé à une zone</p>
-            <div>
-                <div>
-                    <i class="fa-solid fa-users"></i>
-
                     <div>
-                        <p>Réception</p>
-                        <p><small>0/2 employés</small></p>
+                        <h2>Expériences professionnelles</h2>
+                        <div>
+                            <h5>Entreprise</h5>
+                            <p>Role</p>
+                            <div>
+                                date :
+                            </div>
+                        </div>
                     </div>
-
-                    <i class="fa-solid fa-plus"></i>
-
                 </div>
-                <div>
-                    <p>Zone d'accueil - Réservée aux réceptionnistes</p>
-                    <p>Aucun employé assigné</p>
-                </div>
-            </div>
-            <div>
-            <div>
-                    <i class="fa-solid fa-tv"></i>
 
-                    <div>
-                        <p>Salle de conférence</p>
-                        <p><small>0/2 employés</small></p>
-                    </div>
+            </section>
 
-                    <i class="fa-solid fa-plus"></i>
+            <div class="main-content">
+                <h1 class="first-title">Plan d'étage</h1>
+                <p class="first-p">Cliquez sur le bouton + pour assigner un employé à une zone</p>
+                <div class="cards">
+                <div class="room-card">
+                    <div class="header-card">
+                            <div class="title-card-room">
 
-                </div>
-                <div>
-                    <p>Espace de réunion - Accessible à tous</p>
-                    <p>Aucun employé assigné</p>
-                </div>
-            </div>
-            <div>
-            <div>
-                    <i class="fa-solid fa-server"></i>
-
-                    <div>
-                        <p>Salle des serveurs</p>
-                        <p><small>0/2 employés</small></p>
-                    </div>
-
-                    <i class="fa-solid fa-plus"></i>
-
-                </div>
-                <div>
-                    <p>Zone technique - Réservée aux techniciens IT</p>
-                    <p>Aucun employé assigné</p>
-                </div>
-            </div>
-            <div>
-            <div>
-                    <i class="fa-solid fa-user-shield"></i>
-
-                    <div>
-                        <p>Salle de sécurité</p>
-                        <p><small>0/2 employés</small></p>
-                    </div>
-
-                    <i class="fa-solid fa-plus"></i>
-
-                </div>
-                <div>
-                    <p>Centre de sécurité - Réservé aux agents de sécurité</p>
-                    <p>Aucun employé assigné</p>
-                </div>
-            </div>
-            <div>
+                                <i class="fa-solid fa-users"></i>
+            
                                 <div>
-                    <i class="fa-solid fa-mug-hot"></i>
+                                    <p class="role-p">Réception</p>
+                                    <p><small>0/2 employés</small></p>
+                                </div>
+                            </div>                    
+                            <button class="card-add-emp">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
 
-                    <div>
-                        <p>Salle du personnel</p>
-                        <p><small>0/2 employés</small></p>
                     </div>
-
-                    <i class="fa-solid fa-plus"></i>
-
+                    <div>
+                        <p>Zone d'accueil - Réservée aux réceptionnistes</p>
+                        <p>Aucun employé assigné</p>
+                    </div>
                 </div>
-                <div>
-                    <p>Espace de repos - Accessible à tous</p>
-                    <p>Aucun employé assigné</p>
-                </div>
-            </div>
-            <div>
+                <div class="room-card">
+                    <div class="header-card">
+                            <div class="title-card-room">
+
+                                <i class="fa-solid fa-tv"></i>
+            
                                 <div>
-                    <i class="fa-solid fa-boxes-packing"></i>
+                                    <p>Salle de conférence</p>
+                                    <p><small>0/2 employés</small></p>
+                                </div>
+                            </div>                    
+                            <button class="card-add-emp">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
 
-                    <div>
-                        <p>Salle d'archives</p>
-                        <p><small>0/2 employés</small></p>
                     </div>
-
-                    <i class="fa-solid fa-plus"></i>
-
+                    <div>
+                        <p>Espace de réunion - Accessible à tous</p>
+                        <p>Aucun employé assigné</p>
+                    </div>
                 </div>
-                <div>
-                    <p>Zone de stockage - Interdit au personnel de nettoyage</p>
-                    <p>Aucun employé assigné</p>
+                <div class="room-card">
+                <div class="header-card">
+                            <div class="title-card-room">
+
+                                <i class="fa-solid fa-server"></i>
+            
+                                <div>
+                                    <p>Salle des serveurs</p>
+                                    <p><small>0/2 employés</small></p>
+                                </div>
+                            </div>                
+                            <button class="card-add-emp">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+
+                    </div>
+                    <div>
+                        <p>Zone technique - Réservée aux techniciens IT</p>
+                        <p>Aucun employé assigné</p>
+                    </div>
                 </div>
+                <div class="room-card">
+                <div class="header-card">
+                            <div class="title-card-room">
+
+                                <i class="fa-solid fa-user-shield"></i>
+            
+                                <div>
+                                    <p>Salle de sécurité</p>
+                                    <p><small>0/2 employés</small></p>
+                                </div>
+                            </div>                
+                            <button class="card-add-emp">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+
+                    </div>
+                    <div>
+                        <p>Centre de sécurité - Réservé aux agents de sécurité</p>
+                        <p>Aucun employé assigné</p>
+                    </div>
+                </div>
+                <div class="room-card">
+                <div class="header-card">
+                            <div class="title-card-room">
+
+                                <i class="fa-solid fa-mug-hot"></i>
+            
+                                <div>
+                                    <p>Salle du personnel</p>
+                                    <p><small>0/2 employés</small></p>
+                                </div>
+                            </div>                
+                            <button class="card-add-emp">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+
+                    </div>
+                    <div>
+                        <p>Espace de repos - Accessible à tous</p>
+                        <p>Aucun employé assigné</p>
+                    </div>
+                </div>
+                <div class="room-card">
+                                    <div class="header-card">
+                            <div class="title-card-room">
+
+                                <i class="fa-solid fa-boxes-packing"></i>
+            
+                                <div>
+                                    <p>Salle d'archives</p>
+                                    <p><small>0/2 employés</small></p>
+                                </div>
+                            </div>                                    
+                            <button class="card-add-emp">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+
+                    </div>
+                    <div>
+                        <p>Zone de stockage - Interdit au personnel de nettoyage</p>
+                        <p>Aucun employé assigné</p>
+                    </div>
+                </div>                
+                </div>
+
             </div>
-        </div>
 
-    <div class="" id="">
-      <div class="">
+        <div class="modal-container modal-ajout" id="">
         <div class="">
-          <h1>Ajouter un nouvel employé</h1>
+            <div class="">
+            <h1>Ajouter un nouvel employé</h1>
+            </div>
+            <div class="">
+            <form action="">
+                <div>
+                    <img src="" alt="" hidden>
+                </div>
+                <div>
+                <label for="">Nom complet</label>
+                <input type="text" placeholder="Ex : Dar Hamza" />
+                </div>
+                <div>
+                <label for="">Email :</label>
+                <input type="text" placeholder="Email@exemple.com" />
+                </div>
+                <div>
+                <label for="">Selecter le role </label>
+                <select name="" id="">
+                    <option value="NULL" selected>--choisir le role--</option>
+                    <option value="receptionniste">Réceptionnistes</option>
+                    <option value="it">Techniciens IT</option>
+                    <option value="securite">Agents de sécurité</option>
+                    <option value="manager">Manager</option>
+                    <option value="net">Nettoyage</option>
+                    <option value="autre">Autres rôles</option>
+                </select>
+                </div>
+                <div>
+                <label for="">Telephone</label>
+                <input type="tel" />
+                </div>
+                
+                <div class="pics-label" >
+                <label for="photo">Photo URL</label>
+                <input
+                    type="url"
+                    id="photo"
+                    name="photo"
+                    placeholder="https://example.com/image.jpg" />
+                </div>
+
+                <div  >
+                <label>Gender</label><br>
+
+                <input type="radio" id="male" name="gender" value="male" />
+                <label for="male">Male</label>
+
+                <input type="radio" id="female" name="gender" value="female" />
+                <label for="female">Female</label>
+                </div>
+
+
+            </form>
+            <div>
+                <p>Expériences professionnelles</p>
+                <button>ajouter</button>
+            </div>
+            <form action="">
+                <h3>Expérience #1</h3>
+                    <div>
+                        <label for="">Entreprise</label>
+                        <input type="text" placeholder="Yooucode">
+                    </div>
+                    <div>
+                        <label for="">Poste</label>
+                        <input type="text" placeholder="formateur">
+                    </div>
+                    <div>
+                        <label for="">Date de début</label>
+                        <input type="date">
+                    </div>
+                    <div>
+                        <label for="">Date de fin</label>
+                        <input type="date">
+                    </div>
+            </form>
+            <div class="modal-footer">
+                <button>ajouter</button>
+                <button id="closeModal" >cancel</button>
+                </div>
+            </div>
         </div>
-        <div class="">
-          <form action="">
-            <div>
-                <img src="" alt="" hidden>
-            </div>
-            <div>
-              <label for="">Nom complet</label>
-              <input type="text" placeholder="Ex : Dar Hamza" />
-            </div>
-            <div>
-              <label for="">Email :</label>
-              <input type="text" placeholder="Email@exemple.com" />
-            </div>
-            <div>
-              <label for="">Selecter le role </label>
-              <select name="" id="">
-                <option value="NULL" selected>--choisir le role--</option>
-                <option value="receptionniste">Réceptionnistes</option>
-                <option value="it">Techniciens IT</option>
-                <option value="securite">Agents de sécurité</option>
-                <option value="manager">Manager</option>
-                <option value="net">Nettoyage</option>
-                <option value="autre">Autres rôles</option>
-              </select>
-            </div>
-            <div>
-              <label for="">Telephone</label>
-              <input type="tel" />
-            </div>
-             
-            <div class="pics-label" >
-              <label for="photo">Photo URL</label>
-              <input
-                type="url"
-                id="photo"
-                name="photo"
-                placeholder="https://example.com/image.jpg" />
-            </div>
-
-            <div  >
-              <label>Gender</label><br>
-
-              <input type="radio" id="male" name="gender" value="male" />
-              <label for="male">Male</label>
-
-              <input type="radio" id="female" name="gender" value="female" />
-              <label for="female">Female</label>
-            </div>
-
-
-          </form>
-          <div>
-            <p>Expériences professionnelles</p>
-            <button>ajouter</button>
-          </div>
-          <form action="">
-            <h3>Expérience #1</h3>
-                <div>
-                    <label for="">Entreprise</label>
-                    <input type="text" placeholder="Yooucode">
-                </div>
-                <div>
-                    <label for="">Poste</label>
-                    <input type="text" placeholder="formateur">
-                </div>
-                <div>
-                    <label for="">Date de début</label>
-                    <input type="date">
-                </div>
-                <div>
-                    <label for="">Date de fin</label>
-                    <input type="date">
-                </div>
-          </form>
-          <div class="modal-footer">
-              <button>ajouter</button>
-              <button id="closeModal" >cancel</button>
-            </div>
         </div>
-      </div>
-    </div>
 
-    </main>
-    <footer>
+        </main>
+        <footer>
 
-    </footer>
-    <script src="assets/js/script.js" ></script>
-</body>
-</html>
+        </footer>
+        <script src="assets/js/script.js" ></script>
+    </body>
+    </html>
