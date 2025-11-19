@@ -10,23 +10,13 @@
     <body>
         <header>
             <nav>
-                <div class="icon">
-                    <div class="icon-logo">
-                        <i class="fa-solid fa-users"></i>
-                    </div>
-                    <div class="icon-text">
+                <div class="logo">
                         <h1>
-                            WorkSphere
+                            <span>WorkSphere</span> — Visual Staff Manager
                         </h1>
-                        <p>
-                            Gestion du personnel
-                        </p>
-                    </div>
                 </div>
                 <div>
-                    <p>
-                        <span>0</span> employé au total
-                    </p>
+                <button>Ajouter un employé</button>                    
                 </div>
             </nav>
         </header>
@@ -34,21 +24,41 @@
 
             <section class="side-bar">
                 <div class="title-logo">
-                    <i class="fa-solid fa-users empl-icon"></i>
                     <p>employé Non assignés <span> 0  </span> </p>
                 </div>
-
-                <button>Ajouter un employé</button>
-
-                <div class="profil">
-                    <img src="assets/img/avatar_h3.jpg" alt="profile" title="profile-pic">
-                    <div>
-                        <p class="nom">Profile-pics</p>
-                        <p class="role">role</p>
-                    </div>
-                    <button class="remove">X</button>
+                <div>
+                    <p class="small-text">
+                        Drag & drop to move staff into zones. Click a card to view profile.
+                    </p>
                 </div>
 
+
+                <div class="profil">
+                    <div class="logo-pr">
+                        <img src="assets/img/avatar_h3.jpg" alt="profile" title="profile-pic">
+                        <div class="profil-text">
+                            <p class="nom">Profile-pics</p>
+                            <p class="role">role</p>
+                        </div>
+                    </div>
+                    <div class="interactive-btn">
+                        <button class="edit">edit</button>
+                        <button class="remove">X</button>
+                    </div>
+                </div>
+                <div class="profil">
+                    <div class="logo-pr">
+                        <img src="assets/img/avatar_g1.jpg" alt="profile" title="profile-pic">
+                        <div class="profil-text">
+                            <p class="nom">Profile-pics</p>
+                            <p class="role">role</p>
+                        </div>
+                    </div>
+                    <div class="interactive-btn">
+                        <button class="edit">edit</button>
+                        <button class="remove">X</button>
+                    </div>
+                </div>
 
 
                 <div class="modal-container ">
@@ -185,7 +195,8 @@
                             </button>
 
                     </div>
-                    <div>
+                    <div
+                >
                         <p>Espace de repos - Accessible à tous</p>
                         <p>Aucun employé assigné</p>
                     </div>
