@@ -16,7 +16,7 @@
                         </h1>
                 </div>
                 <div>
-                <button>Ajouter un employé</button>                    
+                <button id="openAddModal">Ajouter un employé</button>                    
                 </div>
             </nav>
         </header>
@@ -61,33 +61,46 @@
                 </div>
 
 
-                <div class="modal-container ">
-                    <div>
-                        <h2>Profil de l'employé</h2>
-                        <button><i class="fa-solid fa-xmark"></i></button>
-                    </div>
-                    <div>
-                        <img src="" alt="">
-                        <div>
-                            <h1>Nom d'employé</h1>
-                            <div>
-                                role
-                            </div>
-                            <p>email@gmail</p>
-                            Telephone
-                        </div>
-                    </div>
-                    <div>
-                        <h2>Expériences professionnelles</h2>
-                        <div>
-                            <h5>Entreprise</h5>
-                            <p>Role</p>
-                            <div>
-                                date :
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="modal-container profile-modal" id="profileModal">
+    <div class="modal-profile">
+
+        <button class="close-profile">&times;</button>
+
+        <div class="profile-pic">
+            <img src="" alt="profile">
+        </div>
+
+        <h2>Profil de l'employé</h2>
+
+        <div class="profile-row">
+            <div>
+                <label>Nom :</label>
+                <p class="nom"></p>
+            </div>
+            <div>
+                <label>Email :</label>
+                <p class="email">email@example.com</p>
+            </div>
+        </div>
+
+        <div class="profile-row">
+            <div>
+                <label>Téléphone :</label>
+                <p class="telephone">06...</p>
+            </div>
+            <div>
+                <label>Rôle :</label>
+                <p class="role"></p>
+            </div>
+        </div>
+
+        <h3>Expériences professionnelles</h3>
+        <div class="experience-list">
+            
+        </div>
+    </div>
+</div>
+
 
             </section>
 
@@ -226,92 +239,90 @@
 
             </div>
 
-        <div class="modal-container modal-ajout" id="">
-        <div class="">
-            <div class="">
-            <h1>Ajouter un nouvel employé</h1>
-            </div>
-            <div class="">
-            <form action="">
-                <div>
-                    <img src="" alt="" hidden>
-                </div>
-                <div>
-                <label for="">Nom complet</label>
-                <input type="text" placeholder="Ex : Dar Hamza" />
-                </div>
-                <div>
-                <label for="">Email :</label>
-                <input type="text" placeholder="Email@exemple.com" />
-                </div>
-                <div>
-                <label for="">Selecter le role </label>
-                <select name="" id="">
-                    <option value="NULL" selected>--choisir le role--</option>
-                    <option value="receptionniste">Réceptionnistes</option>
-                    <option value="it">Techniciens IT</option>
-                    <option value="securite">Agents de sécurité</option>
-                    <option value="manager">Manager</option>
-                    <option value="net">Nettoyage</option>
-                    <option value="autre">Autres rôles</option>
-                </select>
-                </div>
-                <div>
-                <label for="">Telephone</label>
-                <input type="tel" />
-                </div>
-                
-                <div class="pics-label" >
-                <label for="photo">Photo URL</label>
-                <input
-                    type="url"
-                    id="photo"
-                    name="photo"
-                    placeholder="https://example.com/image.jpg" />
-                </div>
+<div class="modal-container" id="addModal">
+  <div class="modal">
+    <h1>Ajouter un nouvel employé</h1>
 
-                <div  >
-                <label>Gender</label><br>
+    <form id="addEmployeeForm">
+      
+      <div class="form-group">
+        <label>Nom complet</label>
+        <input type="text" placeholder="Ex : Dar Hamza" />
+      </div>
 
-                <input type="radio" id="male" name="gender" value="male" />
-                <label for="male">Male</label>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="email@example.com" />
+      </div>
 
-                <input type="radio" id="female" name="gender" value="female" />
-                <label for="female">Female</label>
-                </div>
+      <div class="form-group">
+        <label>Rôle</label>
+        <select>
+          <option selected disabled>-- Choisir le rôle --</option>
+          <option value="receptionniste">Réceptionniste</option>
+          <option value="it">Technicien IT</option>
+          <option value="securite">Agent de sécurité</option>
+          <option value="manager">Manager</option>
+          <option value="net">Nettoyage</option>
+          <option value="autre">Autre rôle</option>
+        </select>
+      </div>
 
+      <div class="form-group">
+        <label>Téléphone</label>
+        <input type="tel" placeholder="06 00 00 00 00" />
+      </div>
 
-            </form>
-            <div>
-                <p>Expériences professionnelles</p>
-                <button>ajouter</button>
-            </div>
-            <form action="">
-                <h3>Expérience #1</h3>
-                    <div>
-                        <label for="">Entreprise</label>
-                        <input type="text" placeholder="Yooucode">
-                    </div>
-                    <div>
-                        <label for="">Poste</label>
-                        <input type="text" placeholder="formateur">
-                    </div>
-                    <div>
-                        <label for="">Date de début</label>
-                        <input type="date">
-                    </div>
-                    <div>
-                        <label for="">Date de fin</label>
-                        <input type="date">
-                    </div>
-            </form>
-            <div class="modal-footer">
-                <button>ajouter</button>
-                <button id="closeModal" >cancel</button>
-                </div>
-            </div>
+      <div class="form-group full-row">
+        <label>Photo URL</label>
+        <input type="url" placeholder="https://example.com/photo.jpg" />
+      </div>
+
+      <div class="gender full-row">
+        <label>Genre :</label>
+        <div class="gender-options">
+          <label><input type="radio" name="gender" value="male" /> Homme</label>
+          <label><input type="radio" name="gender" value="female" /> Femme</label>
         </div>
+      </div>
+
+      <div class="experience-header full-row">
+        <h3>Expériences professionnelles</h3>
+        <button type="button" id="showExpForm">Ajouter</button>
+      </div>
+
+      <!-- Experience Form (Hidden) -->
+      <div class="experience-form full-row" id="experienceForm">
+        <div class="form-group">
+          <label>Entreprise</label>
+          <input type="text" placeholder="Ex : YouCode" />
         </div>
+
+        <div class="form-group">
+          <label>Poste</label>
+          <input type="text" placeholder="Formateur" />
+        </div>
+
+        <div class="form-group">
+          <label>Date début</label>
+          <input type="date" />
+        </div>
+
+        <div class="form-group">
+          <label>Date fin</label>
+          <input type="date" />
+        </div>
+      </div>
+
+    </form>
+
+    <div class="modal-footer">
+      <button>Ajouter</button>
+      <button id="closeModal">Annuler</button>
+    </div>
+  </div>
+</div>
+
 
         </main>
         <footer>
