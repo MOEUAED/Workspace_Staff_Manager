@@ -1,0 +1,917 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    color: #222;
+}
+
+/* Header */
+header {
+    background: #ffffff;
+    padding: 12px 18px;
+    border-radius: 14px 14px 0 0;
+    border: 1px solid #e1e1e1;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #222;
+}
+
+.logo span {
+    font-size: 26px;
+    font-weight: 700;
+    color: #444;
+}
+
+nav button {
+    background: #444;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+nav button:hover {
+    background: #222;
+}
+
+/* Main Layout */
+main {
+    display: flex;
+    gap: 1%;
+    width: 100%;
+}
+
+/* Sidebar */
+.side-bar {
+    padding: 12px;
+    background: #ffffff;
+    border: 1px solid #e1e1e1;
+    border-radius: 14px 0 0 14px;
+    flex: 0 0 25%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.title-logo {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.small-text {
+    font-size: 12px;
+    color: #777;
+}
+
+.profil {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    border-radius: 14px;
+    background: #ffffff;
+    border: 1px solid #e4e4e4;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.profil:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+}
+
+.logo-pr {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-pr img {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #f0f0f0;
+}
+
+.profil-text .nom {
+    font-size: 15px;
+    font-weight: 700;
+    color: #222;
+}
+
+.profil-text .role {
+    font-size: 13px;
+    font-weight: 500;
+    color: #6e6e6e;
+}
+
+.interactive-btn {
+    display: flex;
+    gap: 8px;
+}
+
+.interactive-btn button {
+    width: 36px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.edit {
+    background: #eef1ff;
+    color: #3049d1;
+}
+
+.edit:hover {
+    background: #dbe1ff;
+}
+
+.remove {
+    background: #ffe4e4;
+    color: #c71818;
+}
+
+.remove:hover {
+    background: #ffcdcd;
+}
+
+/* Main Content */
+.main-content {
+    padding: 14px;
+    background: #ffffff;
+    flex: 0 0 74%;
+    border: 1px solid #e1e1e1;
+    border-radius: 0 14px 14px 0;
+    height: 99vh;
+    overflow-y: auto;
+}
+
+.first-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: #444;
+}
+
+.first-p {
+    text-align: center;
+    margin: 10px;
+    font-size: 13px;
+    color: #666;
+}
+
+/* Cards */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.room-card {
+    width: 100%;
+    min-height: 30vh;
+    background: #fafafa;
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid #e1e1e1;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.room-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+}
+
+.grid-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+.grid-text p{
+    text-align: center;
+}
+
+.header-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-card-room {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.title-card-room i {
+    font-size: 22px;
+    background: #eaeaea;
+    color: #444;
+    padding: 10px;
+    border-radius: 10px;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.role-p {
+    font-size: 15px;
+    font-weight: 700;
+    color: #222;
+}
+
+.card-add-emp {
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.card-add-emp:hover {
+    background: #f0f0f0;
+}
+
+.emp-list-room {
+    max-height: 300px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.emp-item-select {
+    padding: 12px;
+    background: #f8f8f8;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.emp-item-select:hover {
+    background: #eaeaea;
+}
+
+
+/* Modals */
+.modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255,255,255,0.65);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal-container.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 15px;
+    width: 700px;
+    max-width: 90%;
+    box-shadow: 0 0 30px rgba(0,0,0,0.1);
+    color: #1f1f1f;
+}
+
+.modal h1 {
+    margin-bottom: 20px;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+/* Forms inside modal */
+.modal form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.modal form input,
+.modal form select {
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 15px;
+    border: 1px solid #d0d4db;
+    background: #f8f9fb;
+    outline: none;
+}
+
+.modal form input:focus,
+.modal form select:focus {
+    border-color: #42a5f5;
+    background: white;
+    box-shadow: 0 0 6px rgba(66,165,245,0.4);
+}
+
+.full-row {
+    grid-column: span 2;
+}
+
+.gender-options {
+    display: flex;
+    gap: 20px;
+    margin-top: 5px;
+}
+
+.experience-header {
+    grid-column: span 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.experience-header button {
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: none;
+    background: #42a5f5;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.experience-header button:hover {
+    background: #1e88e5;
+    transform: scale(1.05);
+}
+
+.experience-form {
+    display: none;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.modal-footer {
+    margin-top: 25px;
+    display: flex;
+    justify-content: end;
+    gap: 15px;
+}
+
+.modal-footer button {
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    background: #42a5f5;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.modal-footer button:hover {
+    background: #1e88e5;
+    transform: scale(1.05);
+}
+
+/* Profile Modal */
+.modal-container.profile-modal {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-container.active.profile-modal {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-profile {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    width: 500px;
+    max-width: 90%;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.modal-profile h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 25px;
+    font-weight: 700;
+    color: #222;
+}
+
+.modal-profile .profile-pic {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.modal-profile .profile-pic img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e0e0e0;
+}
+
+.profile-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    gap: 10px;
+}
+
+.profile-row div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-row label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 4px;
+}
+
+.profile-row p {
+    font-size: 15px;
+    color: #222;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+}
+
+.experience-list {
+    margin-top: 15px;
+}
+
+.experience-list .experience-item {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 10px;
+    background: #f9f9f9;
+    font-size: 14px;
+}
+
+.close-profile {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: #555;
+    transition: 0.2s;
+}
+
+.close-profile:hover {
+    color: #000;
+}
+/* ========================================
+   RESPONSIVE DESIGN - MEDIA QUERIES ONLY
+   ======================================== */
+
+/* ========================================
+   RESPONSIVE DESIGN - MEDIA QUERIES
+   ======================================== */
+
+/* Petit écran d'ordinateur : 1024px - 1279px (Portrait) */
+@media screen and (max-width: 1279px) and (min-width: 1024px) {
+    .logo h1 {
+        font-size: 20px;
+    }
+    
+    .logo span {
+        font-size: 22px;
+    }
+    
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .side-bar {
+        flex: 0 0 30%;
+    }
+    
+    .main-content {
+        flex: 0 0 69%;
+    }
+}
+
+/* Tablette : 768px - 1023px (Portrait) */
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+    header {
+        border-radius: 12px 12px 0 0;
+        padding: 10px 15px;
+    }
+    
+    nav {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .logo h1 {
+        font-size: 18px;
+    }
+    
+    .logo span {
+        font-size: 20px;
+    }
+    
+    nav button {
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+    
+    main {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .side-bar {
+        flex: 1;
+        border-radius: 12px 12px 0 0;
+        max-height: 40vh;
+        overflow-y: auto;
+    }
+    
+    .main-content {
+        flex: 1;
+        border-radius: 0 0 12px 12px;
+        height: auto;
+        min-height: 60vh;
+    }
+    
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .room-card {
+        min-height: 25vh;
+        padding: 15px;
+    }
+    
+    .first-title {
+        font-size: 20px;
+    }
+    
+    .first-p {
+        font-size: 12px;
+    }
+    
+    .profil {
+        padding: 10px;
+    }
+    
+    .logo-pr img {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .profil-text .nom {
+        font-size: 14px;
+    }
+    
+    .profil-text .role {
+        font-size: 12px;
+    }
+    
+    .modal {
+        width: 90%;
+        padding: 20px;
+    }
+    
+    .modal h1 {
+        font-size: 22px;
+    }
+}
+
+/* Mobile : jusqu'à 767px (Portrait) */
+@media screen and (max-width: 767px) {
+    header {
+        border-radius: 8px 8px 0 0;
+        padding: 10px;
+    }
+    
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .logo h1 {
+        font-size: 16px;
+        text-align: center;
+    }
+    
+    .logo span {
+        font-size: 18px;
+    }
+    
+    nav button {
+        width: 100%;
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    main {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .side-bar {
+        flex: 1;
+        border-radius: 8px 8px 0 0;
+        max-height: 35vh;
+        overflow-y: auto;
+        padding: 10px;
+        gap: 12px;
+    }
+    
+    .title-logo {
+        font-size: 14px;
+    }
+    
+    .small-text {
+        font-size: 11px;
+    }
+    
+    .main-content {
+        flex: 1;
+        border-radius: 0 0 8px 8px;
+        height: auto;
+        min-height: 65vh;
+        padding: 10px;
+    }
+    
+    .first-title {
+        font-size: 18px;
+    }
+    
+    .first-p {
+        font-size: 11px;
+        margin: 8px 0;
+    }
+    
+    .cards {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .room-card {
+        min-height: auto;
+        padding: 12px;
+    }
+    
+    .title-card-room i {
+        font-size: 18px;
+        width: 40px;
+        height: 40px;
+        padding: 8px;
+    }
+    
+    .role-p {
+        font-size: 14px;
+    }
+    
+    .card-add-emp {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+    
+    .profil {
+        padding: 10px;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .logo-pr {
+        width: 100%;
+    }
+    
+    .logo-pr img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .profil-text .nom {
+        font-size: 14px;
+    }
+    
+    .profil-text .role {
+        font-size: 12px;
+    }
+    
+    .interactive-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    /* Modal adjustments for mobile */
+    .modal {
+        width: 95%;
+        padding: 20px;
+        max-height: 85vh;
+    }
+    
+    .modal h1 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    
+    .modal form {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .full-row {
+        grid-column: span 1;
+    }
+    
+    .modal form input,
+    .modal form select {
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    .experience-form {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-footer {
+        flex-direction: column-reverse;
+        gap: 10px;
+    }
+    
+    .modal-footer button {
+        width: 100%;
+    }
+    
+    /* Profile modal mobile */
+    .modal-profile {
+        width: 95%;
+        padding: 20px;
+        max-height: 85vh;
+    }
+    
+    .modal-profile h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .modal-profile h3 {
+        font-size: 16px;
+    }
+    
+    .modal-profile .profile-pic img {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .profile-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .profile-row p {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+/* Paysage Mobile : 768px - 1023px (Landscape) */
+@media screen and (max-width: 1023px) and (min-width: 768px) and (orientation: landscape) {
+    .side-bar {
+        max-height: 50vh;
+    }
+    
+    .main-content {
+        min-height: 50vh;
+    }
+    
+    .cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .room-card {
+        min-height: 20vh;
+    }
+    
+    .modal {
+        max-height: 80vh;
+    }
+    
+    .modal-profile {
+        max-height: 80vh;
+    }
+}
+
+/* Paysage Tablette : 1024px - 1279px (Landscape) */
+@media screen and (max-width: 1279px) and (min-width: 1024px) and (orientation: landscape) {
+    .cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .main-content {
+        height: 95vh;
+    }
+}
+
+/* Mobile très petit (jusqu'à 480px) */
+@media screen and (max-width: 480px) {
+    .logo h1 {
+        font-size: 14px;
+    }
+    
+    .logo span {
+        font-size: 16px;
+    }
+    
+    .first-title {
+        font-size: 16px;
+    }
+    
+    .room-card {
+        padding: 10px;
+    }
+    
+    .title-card-room {
+        gap: 8px;
+    }
+    
+    .title-card-room i {
+        font-size: 16px;
+        width: 35px;
+        height: 35px;
+    }
+    
+    .role-p {
+        font-size: 13px;
+    }
+    
+    .header-card small {
+        font-size: 11px;
+    }
+    
+    .modal h1 {
+        font-size: 18px;
+    }
+    
+    .modal-profile h2 {
+        font-size: 18px;
+    }
+}
