@@ -87,7 +87,7 @@
             
                                 <div>
                                     <p class="role-p">Réception</p>
-                                    <p><small>0/2 employés</small></p>
+                                    <p><small>0/6    employés</small></p>
                                 </div>
                             </div>                    
                             <button class="card-add-emp">
@@ -95,7 +95,7 @@
                             </button>
 
                     </div>
-                    <div>
+                    <div class="grid-text" >
                         <p>Zone d'accueil - Réservée aux réceptionnistes</p>
                         <p>Aucun employé assigné</p>
                     </div>
@@ -108,7 +108,7 @@
             
                                 <div>
                                     <p>Salle de conférence</p>
-                                    <p><small>0/2 employés</small></p>
+                                    <p><small>0/6    employés</small></p>
                                 </div>
                             </div>                    
                             <button class="card-add-emp">
@@ -116,7 +116,7 @@
                             </button>
 
                     </div>
-                    <div>
+                    <div class="grid-text" >
                         <p>Espace de réunion - Accessible à tous</p>
                         <p>Aucun employé assigné</p>
                     </div>
@@ -129,7 +129,7 @@
             
                                 <div>
                                     <p>Salle des serveurs</p>
-                                    <p><small>0/2 employés</small></p>
+                                    <p><small>0/6    employés</small></p>
                                 </div>
                             </div>                
                             <button class="card-add-emp">
@@ -137,7 +137,7 @@
                             </button>
 
                     </div>
-                    <div>
+                    <div class="grid-text" >
                         <p>Zone technique - Réservée aux techniciens IT</p>
                         <p>Aucun employé assigné</p>
                     </div>
@@ -150,7 +150,7 @@
             
                                 <div>
                                     <p>Salle de sécurité</p>
-                                    <p><small>0/2 employés</small></p>
+                                    <p><small>0/6    employés</small></p>
                                 </div>
                             </div>                
                             <button class="card-add-emp">
@@ -158,7 +158,7 @@
                             </button>
 
                     </div>
-                    <div>
+                    <div class="grid-text" >
                         <p>Centre de sécurité - Réservé aux agents de sécurité</p>
                         <p>Aucun employé assigné</p>
                     </div>
@@ -171,7 +171,7 @@
             
                                 <div>
                                     <p>Salle du personnel</p>
-                                    <p><small>0/2 employés</small></p>
+                                    <p><small>0/6    employés</small></p>
                                 </div>
                             </div>                
                             <button class="card-add-emp">
@@ -179,8 +179,7 @@
                             </button>
 
                     </div>
-                    <div
-                >
+                    <div class="grid-text" > 
                         <p>Espace de repos - Accessible à tous</p>
                         <p>Aucun employé assigné</p>
                     </div>
@@ -193,7 +192,7 @@
             
                                 <div>
                                     <p>Salle d'archives</p>
-                                    <p><small>0/2 employés</small></p>
+                                    <p><small>0/6    employés</small></p>
                                 </div>
                             </div>                                    
                             <button class="card-add-emp">
@@ -201,7 +200,7 @@
                             </button>
 
                     </div>
-                    <div>
+                    <div class="grid-text" >
                         <p>Zone de stockage - Interdit au personnel de nettoyage</p>
                         <p>Aucun employé assigné</p>
                     </div>
@@ -292,6 +291,30 @@
       <button id="closeModal">Annuler</button>
     </div>
   </div>
+</div>
+
+<div class="modal-container" id="chooseEmpModal">
+    <div class="modal">
+        <h2>Choisir un employé</h2>
+
+        <div id="empListForRoom" class="emp-list-room"></div>
+
+        <div class="modal-footer">
+            <button id="closeChooseEmp">Fermer</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal-container" id="assignModal">
+    <div class="modal">
+        <h2>Assigner un employé</h2>
+
+        <div id="assignList"></div>
+
+        <div class="modal-footer">
+            <button id="closeAssign">Fermer</button>
+        </div>
+    </div>
 </div>
 
 
