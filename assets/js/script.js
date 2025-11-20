@@ -91,7 +91,7 @@ addEmployeeBtn.addEventListener("click", () => {
     let photo = inputs[4].value.trim();
     let gender = addEmployeeForm.querySelector("input[name='gender']:checked");
 
-    if (!nom || !email || !role || !tel || (!photo && !gender)) {
+    if (!nom || !email || !role || !tel || !gender) {
         alert("Merci de remplir tous les champs");
         return;
     }
@@ -99,8 +99,8 @@ addEmployeeBtn.addEventListener("click", () => {
     if (!photo) {
         let rnd = Math.floor(Math.random() * 5) + 1;
         photo = gender.value === "male"
-            ? `assets/img/avatar_h${rnd}.jpg`
-            : `assets/img/avatar_g${rnd}.jpg`;
+        ?`assets/img/avatar_h${rnd}.jpg`
+         : `assets/img/avatar_g${rnd}.jpg`;
     }
 
     let newEmployee = {
@@ -119,3 +119,61 @@ addEmployeeBtn.addEventListener("click", () => {
     addModal.classList.remove("active");
     addEmployeeForm.reset();
 });
+
+
+const chooseEmpModal = document.getElementById("chooseEmpModal");
+const closeChooseEmp = document.getElementById("closeChooseEmp");
+const empListForRoom = document.getElementById("empListForRoom");
+
+let selectedRoom = null;
+
+document.querySelectorAll(".card-add-emp").forEach((btn, index) => {
+    btn.addEventListener("click", () => {
+        selectedRoom = btn.closest(".room-card");
+        openChooseEmployeeModal();
+    });
+});
+
+function openChooseEmployeeModal() {
+    empListForRoom.innerHTML = "";
+
+    employees.forEach(emp => {
+        let div = document.createElement("div");
+        div.classList.add("emp-item-select");
+
+        div.innerHTML = `
+            <strong>${emp.nom}</strong> - ${emp.role}
+        `;
+
+        div.addEventListener("click", () => assignEmployeeToRoom(emp));
+
+        empListForRoom.appendChild(div);
+    });
+
+    chooseEmpModal.classList.add("active");
+}
+
+closeChooseEmp.addEventListener("click", () => {
+    chooseEmpModal.classList.remove("active");
+});
+
+function assignEmployeeToRoom(emp) {
+
+    let zoneText = selectedRoom.querySelector(".grid-text");
+
+    zoneText.innerHTML = `
+        <p><strong>${emp.nom}</strong></p>
+        <p>${emp.role}</p>
+    `;
+
+    // update count
+    let small = selectedRoom.querySelector("small");
+    let numbers = small.textContent.match(/\d+/g);
+    let current = parseInt(numbers[0]) + 1;
+    let max = parseInt(numbers[1]);
+
+    if (current > max) current = max;
+    small.textContent = `${current}/${max} employés`;
+
+    chooseEmpModal.classList.remove("active");
+}

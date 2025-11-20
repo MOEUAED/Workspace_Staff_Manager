@@ -203,7 +203,7 @@ main {
     border: 1px solid #e1e1e1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 14px;
     cursor: pointer;
     transition: 0.2s;
 }
@@ -211,6 +211,17 @@ main {
 .room-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+}
+
+.grid-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+.grid-text p{
+    text-align: center;
 }
 
 .header-card {
@@ -261,6 +272,28 @@ main {
 .card-add-emp:hover {
     background: #f0f0f0;
 }
+
+.emp-list-room {
+    max-height: 300px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.emp-item-select {
+    padding: 12px;
+    background: #f8f8f8;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.emp-item-select:hover {
+    background: #eaeaea;
+}
+
 
 /* Modals */
 .modal-container {
