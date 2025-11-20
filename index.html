@@ -1,287 +1,164 @@
-    <!DOCTYPE html>
-    <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-        <link rel="stylesheet" href="assets/css/style.css">
-        <title>Workspace Staff Manager</title>
-    </head>
-    <body>
-        <header>
-            <nav>
-                <div class="logo">
-                        <h1>
-                            <span>WorkSphere</span> — Visual Staff Manager
-                        </h1>
-                </div>
-                <div>
-                <button id="openAddModal">Ajouter un employé</button>                    
-                </div>
-            </nav>
-        </header>
-        <main>
-
-            <section class="side-bar">
-                <div class="title-logo">
-                    <p>employé Non assignés <span> 0  </span> </p>
-                </div>
-                <div>
-                    <p class="small-text">
-                        Drag & drop to move staff into zones. Click a card to view profile.
-                    </p>
-                </div>
-
-<div class="modal-container profile-modal" id="profileModal">
-    <div class="modal-profile">
-
-        <button class="close-profile">X</button>
-
-        <div class="profile-pic">
-            <img src="assets/img/default_avatar.jpg" alt="profile">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <title>Workspace Staff Manager</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">
+          <h1><span>WorkSphere</span> — Visual Staff Manager</h1>
         </div>
-
-        <h2>Profil de l'employé</h2>
-
-        <div class="profile-row">
-            <div>
-                <label>Nom :</label>
-                <p class="nom"></p>
-            </div>
-            <div>
-                <label>Email :</label>
-                <p class="email">email@example.com</p>
-            </div>
+        <div><button id="openAddModal">Ajouter un employé</button></div>
+      </nav>
+    </header>
+    <main>
+      <section class="side-bar">
+        <div class="side-header">
+          <div>
+            <p style="font-weight: 700">
+              Employés non assignés <span id="unassignedCount">0</span>
+            </p>
+          </div>
         </div>
+        <p class="small-text">
+          Cliquez sur une carte pour voir le profil. Utilisez + sur une zone
+          pour assigner.
+        </p>
+        <div class="unassigned-list" id="unassignedList"></div>
+      </section>
+      <section class="main-content">
+        <h2 class="first-title">Plan d'étage</h2>
+        <p class="first-p">
+          Cliquez sur le + pour assigner un employé — les règles d'accès sont
+          appliquées.
+        </p>
+        <div class="cards" id="zonesContainer"></div>
+      </section>
+    </main>
 
-        <div class="profile-row">
-            <div>
-                <label>Téléphone :</label>
-                <p class="telephone">06...</p>
+    <div class="modal-container" id="addModal">
+      <div class="modal">
+        <h1>Ajouter un nouvel employé</h1>
+        <form id="addEmployeeForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Nom complet</label>
+              <input
+                id="name"
+                required
+                pattern="[\w\s'-]{2,60}"
+                placeholder="Ex : Hamza Daoud" />
             </div>
-            <div>
-                <label>Rôle :</label>
-                <p class="role"></p>
+            <div class="form-group">
+              <label>Email</label>
+              <input
+                id="email"
+                type="email"
+                required
+                placeholder="email@example.com" />
             </div>
-        </div>
-
-        <h3>Expériences professionnelles</h3>
-        <div class="experience-list">
-            
-        </div>
+            <div class="form-group">
+              <label>Rôle</label>
+              <select id="role" required>
+                <option value="" disabled selected>
+                  -- Choisir le rôle --
+                </option>
+                <option value="receptionniste">Réceptionniste</option>
+                <option value="it">Technicien IT</option>
+                <option value="securite">Agent de sécurité</option>
+                <option value="manager">Manager</option>
+                <option value="nettoyage">Nettoyage</option>
+                <option value="autre">Autre rôle</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Téléphone</label>
+              <input
+                id="phone"
+                type="tel"
+                placeholder="0600000000"
+                pattern="^0[5-9][0-9]{8}$" />
+            </div>
+            <div class="form-group full-row">
+              <label>Photo URL</label>
+              <input id="photo" type="url" placeholder="https://...jpg" />
+            </div>
+            <div class="form-group full-row">
+              <label>Prévisualisation</label>
+              <img
+                id="photoPreview"
+                class="preview-img"
+                src="assets/img/avatar_h2.jpg" />
+            </div>
+            <div class="form-group full-row" style="margin-top: 6px">
+              <label>Expériences professionnelles</label>
+              <div id="experiencesContainer"></div>
+              <div style="margin-top: 8px; display: flex; gap: 8px">
+                <button
+                  type="button"
+                  class="btn btn-ghost"
+                  id="addExperienceBtn">
+                  Ajouter une expérience
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-ghost"
+                  id="clearExperiences">
+                  Effacer
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Ajouter</button>
+            <button type="button" class="btn btn-ghost" id="closeAdd">
+              Annuler
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-</div>
 
-
-            </section>
-
-            <div class="main-content">
-                <h1 class="first-title">Plan d'étage</h1>
-                <p class="first-p">Cliquez sur le bouton + pour assigner un employé à une zone</p>
-                <div class="cards">
-                <div class="room-card">
-                    <div class="header-card">
-                            <div class="title-card-room">
-
-                                <i class="fa-solid fa-users"></i>
-            
-                                <div>
-                                    <p class="role-p">Réception</p>
-                                    <p><small>0/6    employés</small></p>
-                                </div>
-                            </div>                    
-                            <button class="card-add-emp">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-
-                    </div>
-                    <div class="grid-text" >
-                        <p>Zone d'accueil - Réservée aux réceptionnistes</p>
-                        <p>Aucun employé assigné</p>
-                    </div>
-                </div>
-                <div class="room-card">
-                    <div class="header-card">
-                            <div class="title-card-room">
-
-                                <i class="fa-solid fa-tv"></i>
-            
-                                <div>
-                                    <p>Salle de conférence</p>
-                                    <p><small>0/6    employés</small></p>
-                                </div>
-                            </div>                    
-                            <button class="card-add-emp">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-
-                    </div>
-                    <div class="grid-text" >
-                        <p>Espace de réunion - Accessible à tous</p>
-                        <p>Aucun employé assigné</p>
-                    </div>
-                </div>
-                <div class="room-card">
-                <div class="header-card">
-                            <div class="title-card-room">
-
-                                <i class="fa-solid fa-server"></i>
-            
-                                <div>
-                                    <p>Salle des serveurs</p>
-                                    <p><small>0/6    employés</small></p>
-                                </div>
-                            </div>                
-                            <button class="card-add-emp">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-
-                    </div>
-                    <div class="grid-text" >
-                        <p>Zone technique - Réservée aux techniciens IT</p>
-                        <p>Aucun employé assigné</p>
-                    </div>
-                </div>
-                <div class="room-card">
-                <div class="header-card">
-                            <div class="title-card-room">
-
-                                <i class="fa-solid fa-user-shield"></i>
-            
-                                <div>
-                                    <p>Salle de sécurité</p>
-                                    <p><small>0/6    employés</small></p>
-                                </div>
-                            </div>                
-                            <button class="card-add-emp">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-
-                    </div>
-                    <div class="grid-text" >
-                        <p>Centre de sécurité - Réservé aux agents de sécurité</p>
-                        <p>Aucun employé assigné</p>
-                    </div>
-                </div>
-                <div class="room-card">
-                <div class="header-card">
-                            <div class="title-card-room">
-
-                                <i class="fa-solid fa-mug-hot"></i>
-            
-                                <div>
-                                    <p>Salle du personnel</p>
-                                    <p><small>0/6    employés</small></p>
-                                </div>
-                            </div>                
-                            <button class="card-add-emp">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-
-                    </div>
-                    <div class="grid-text" > 
-                        <p>Espace de repos - Accessible à tous</p>
-                        <p>Aucun employé assigné</p>
-                    </div>
-                </div>
-                <div class="room-card">
-                                    <div class="header-card">
-                            <div class="title-card-room">
-
-                                <i class="fa-solid fa-boxes-packing"></i>
-            
-                                <div>
-                                    <p>Salle d'archives</p>
-                                    <p><small>0/6    employés</small></p>
-                                </div>
-                            </div>                                    
-                            <button class="card-add-emp">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-
-                    </div>
-                    <div class="grid-text" >
-                        <p>Zone de stockage - Interdit au personnel de nettoyage</p>
-                        <p>Aucun employé assigné</p>
-                    </div>
-                </div>                
-                </div>
-
-            </div>
-
-<div class="modal-container" id="addModal">
-  <div class="modal">
-    <h1>Ajouter un nouvel employé</h1>
-
-    <form id="addEmployeeForm">
-      
-      <div class="form-group">
-        <label>Nom complet</label>
-        <input type="text" placeholder="Ex : Dar Hamza" >
-      </div>
-
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" placeholder="email@example.com" >
-      </div>
-
-      <div class="form-group">
-        <label>Rôle</label>
-        <select>
-          <option selected disabled>-- Choisir le rôle --</option>
-          <option value="receptionniste">Réceptionniste</option>
-          <option value="it">Technicien IT</option>
-          <option value="securite">Agent de sécurité</option>
-          <option value="manager">Manager</option>
-          <option value="net">Nettoyage</option>
-          <option value="autre">Autre rôle</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label>Téléphone</label>
-        <input type="tel" placeholder="06 00 00 00 00" >
-      </div>
-
-      <div class="form-group full-row">
-        <label>Photo URL</label>
-        <input type="url" placeholder="https://example.com/photo.jpg" >
-      </div>
-
-      <div class="gender full-row">
-        <label>Genre :</label>
-        <div class="gender-options">
-          <label><input type="radio" name="gender" value="male" > Homme</label>
-          <label><input type="radio" name="gender" value="female" > Femme</label>
+    <div class="modal-container" id="chooseEmpModal">
+      <div class="modal">
+        <h1>Choisir un employé pour <span id="chooseZoneName"></span></h1>
+        <div id="empListForRoom" class="emp-list-room"></div>
+        <div class="modal-footer">
+          <button class="btn btn-ghost" id="closeChooseEmp">Fermer</button>
         </div>
       </div>
+    </div>
 
-      <div class="experience-header full-row">
-        <h3>Expériences professionnelles</h3>
-        <button type="button" id="showExpForm">Ajouter</button>
-      </div>
-
-      <!-- Experience Form (Hidden) -->
-      <div class="experience-form full-row" id="experienceForm">
-        <div class="form-group">
-          <label>Entreprise</label>
-          <input type="text" placeholder="Ex : YouCode" >
+    <div class="modal-container" id="profileModal">
+      <div class="modal">
+        <button id="closeProfile" style="float: right" class="btn btn-ghost">
+          X
+        </button>
+        <h1>Profil</h1>
+        <div style="display: flex; gap: 12px; align-items: center">
+          <img
+            id="profilePic"
+            src="https://via.placeholder.com/120"
+            class="preview-img" />
+          <div>
+            <h3 id="profileName"></h3>
+            <p id="profileRole" style="color: var(--muted)"></p>
+            <p id="profileEmail" style="color: var(--muted)"></p>
+            <p id="profilePhone" style="color: var(--muted)"></p>
+          </div>
         </div>
-
-        <div class="form-group">
-          <label>Poste</label>
-          <input type="text" placeholder="Formateur" >
-        </div>
-
-        <div class="form-group">
-          <label>Date début</label>
-          <input type="date" >
-        </div>
-
-        <div class="form-group">
-          <label>Date fin</label>
-          <input type="date" >
-        </div>
+        <h3 style="margin-top: 12px">Expériences</h3>
+        <div id="profileExperiences"></div>
+        <p style="margin-top: 10px; color: var(--muted)">
+          Localisation actuelle: <span id="profileLocation">Non assigné</span>
+        </p>
       </div>
 
     </form>
@@ -318,10 +195,6 @@
 </div>
 
 
-        </main>
-        <footer>
-
-        </footer>
-        <script src="assets/js/script.js" ></script>
-    </body>
-    </html>
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>
