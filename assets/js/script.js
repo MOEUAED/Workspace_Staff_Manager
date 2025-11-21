@@ -91,3 +91,23 @@ function renderZones() {
     })
   })
 }
+
+function renderUnassigned() {
+  const ul = document.getElementById('unassignedList');
+  ul.innerHTML = '';
+  const assignedIds = new Set(Object.values(assignments).flat());
+  const un = staff.filter(s => ![...assignedIds].includes(s.id));
+  document.getElementById('unassignedCount').textContent = un.length;
+  if (un.length === 0) {
+    ul.innerHTML = '<div class="empty-note">Aucun employé non assigné</div>';
+    return
+  }
+  un.forEach(s => {
+    const card = document.createElement('div');
+    card.className = 'staff-card';
+    card.innerHTML = `<img src="${s.photo||'assets/img/avatar_h2.jpg'}"><div class="staff-meta"><div class="staff-name">${s.name}</div><div class="staff-role">${s.role}</div></div><div><button class="btn btn-ghost" data-id="${s.id}">+</button></div>`;
+    card.querySelector('.staff-meta').addEventListener('click', () => openProfile(s.id));
+    card.querySelector('button').addEventListener('click', () => openChooseModalForAssign(s.id));
+    ul.appendChild(card)
+  })
+}
