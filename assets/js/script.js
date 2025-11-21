@@ -56,7 +56,6 @@ const zonesDef = [{
   }
 ]
 
-// locale storage + render zone and staff assignments
 
 let staff = JSON.parse(localStorage.getItem('ws_staff') || '[]')
 let assignments = JSON.parse(localStorage.getItem('ws_assign') || '{}')
@@ -93,8 +92,6 @@ function renderZones() {
   })
 }
 
-//  display and manage unassigned staff
-
 function renderUnassigned() {
   const ul = document.getElementById('unassignedList');
   ul.innerHTML = '';
@@ -114,8 +111,6 @@ function renderUnassigned() {
     ul.appendChild(card)
   })
 }
-
-// Implemented zone/employee selection modals with assignment logic 
 
 function openChooseModalForAssign(empIdOrZone) {
   const modal = document.getElementById('chooseEmpModal');
@@ -176,7 +171,6 @@ function closeChooseModal() {
   document.getElementById('chooseEmpModal').classList.remove('active')
 }
 
-
 function openProfile(id) {
   const s = staff.find(x => x.id === id);
   if (!s) return;
@@ -204,3 +198,129 @@ function openProfile(id) {
 function closeProfile() {
   document.getElementById('profileModal').classList.remove('active')
 }
+
+function assignToZone(empId, zoneId) {
+  assignments[zoneId] = assignments[zoneId] || [];
+  if (assignments[zoneId].length >= zonesDef.find(z => z.id === zoneId).max) return alert('Capacité atteinte');
+  assignments[zoneId].push(empId);
+  save();
+  renderUnassigned();
+  renderZones()
+}
+
+function removeFromZone(empId, zoneId) {
+  assignments[zoneId] = assignments[zoneId] || [];
+  assignments[zoneId] = assignments[zoneId].filter(id => id !== empId);
+  if (assignments[zoneId].length === 0) delete assignments[zoneId];
+  save();
+  renderUnassigned();
+  renderZones()
+}
+
+function setupHandlers() {
+  document.getElementById('openAddModal').addEventListener('click', () => document.getElementById('addModal').classList.add('active'))
+  document.getElementById('closeAdd').addEventListener('click', () => document.getElementById('addModal').classList.remove('active'))
+  document.getElementById('closeChooseEmp').addEventListener('click', closeChooseModal)
+  document.getElementById('closeProfile').addEventListener('click', closeProfile)
+  document.addEventListener('click', e => {
+    if (e.target.matches('.card-add-emp')) {
+      const zid = e.target.dataset.zone;
+      openChooseModalForAssign('z:' + zid)
+    }
+    if (e.target.matches('.remove-from-zone')) {
+      removeFromZone(e.target.dataset.id, e.target.dataset.zone)
+    }
+  })
+  const photoInput = document.getElementById('photo');
+  photoInput.addEventListener('input', e => {
+    const v = e.target.value;
+    document.getElementById('photoPreview').src = v || 'assets/img/avatar_h2.jpg'
+  })
+  const addExpBtn = document.getElementById('addExperienceBtn');
+  addExpBtn.addEventListener('click', addExperienceField);
+  document.getElementById('clearExperiences').addEventListener('click', () => {
+    document.getElementById('experiencesContainer').innerHTML = ''
+  });
+  const form = document.getElementById('addEmployeeForm');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const role = document.getElementById('role').value;
+    const phone = document.getElementById('phone').value.trim();
+    const photo = document.getElementById('photo').value.trim();
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      return alert('Email invalide')
+    }
+    if (!/^.{2,60}$/.test(name)) {
+      return alert('Nom invalide')
+    }
+    if (phone && !/^0[5-9][0-9]{8}$/.test(phone)) {
+      return alert('Téléphone invalide (ex: 0600000000)')
+    }
+    const exps = [];
+    const nodes = document.querySelectorAll('.experience-item');
+    for (const n of nodes) {
+      const comp = n.querySelector('[data-company]').value.trim();
+      const pos = n.querySelector('[data-position]').value.trim();
+      const start = n.querySelector('[data-start]').value;
+      const end = n.querySelector('[data-end]').value;
+      if (start && end && start > end) {
+        return alert('La date de début doit être antérieure à la date de fin')
+      }
+      if (comp || pos || start || end) exps.push({
+        company: comp,
+        position: pos,
+        start: start,
+        end: end
+      })
+    }
+    const obj = {
+      id: uid(),
+      name,
+      role,
+      email,
+      phone,
+      photo,
+      experiences: exps
+    };
+    staff.push(obj);
+    save();
+    document.getElementById('addModal').classList.remove('active');
+    form.reset();
+    document.getElementById('photoPreview').src = 'assets/img/avatar_h2.jpg';
+    document.getElementById('experiencesContainer').innerHTML = '';
+    renderUnassigned();
+    renderZones()
+  })
+}
+
+function addExperienceField() {
+  const c = document.getElementById('experiencesContainer');
+  const div = document.createElement('div');
+  div.className = 'experience-item';
+  div.innerHTML = `<div><input data-company placeholder="Entreprise"></div><div><input data-position placeholder="Poste"></div><div><label style="font-size:12px;color:var(--muted)">Date début</label><input data-start type="date"></div><div><label style="font-size:12px;color:var(--muted)">Date fin</label><input data-end type="date"></div><div style="grid-column:span 2;display:flex;justify-content:flex-end;margin-top:6px"><button type="button" class="btn btn-ghost" data-remove>Supprimer</button></div>`;
+  c.appendChild(div);
+  div.querySelector('[data-remove]').addEventListener('click', () => div.remove())
+}
+
+function wireRemoveButtons() {
+  document.addEventListener('click', e => {
+    if (e.target.matches('[data-id]') && !e.target.dataset.assign) {
+      openChooseModalForAssign_empId(e.target.dataset.id)
+    }
+  })
+}
+
+function init() {
+  renderZones();
+  renderUnassigned();
+  setupHandlers();
+  wireRemoveButtons();
+  document.querySelectorAll('.remove-from-zone').forEach(b => b.addEventListener('click', () => {}))
+}
+init()
+// listen remove buttons delegated
+document.addEventListener('click', e => {
+  if (e.target.matches('.remove-from-zone')) removeFromZone(e.target.dataset.id, e.target.dataset.zone)
+})
