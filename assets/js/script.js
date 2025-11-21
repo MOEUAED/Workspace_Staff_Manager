@@ -56,7 +56,7 @@ const zonesDef = [{
   }
 ]
 
-
+// locale storage 
 let staff = JSON.parse(localStorage.getItem('ws_staff') || '[]')
 let assignments = JSON.parse(localStorage.getItem('ws_assign') || '{}')
 
@@ -64,6 +64,8 @@ function save() {
   localStorage.setItem('ws_staff', JSON.stringify(staff));
   localStorage.setItem('ws_assign', JSON.stringify(assignments))
 }
+
+//render zone + add employee on it
 
 function uid() {
   return Date.now().toString(36) + Math.random().toString(36).slice(2, 7)
@@ -111,6 +113,8 @@ function renderUnassigned() {
     ul.appendChild(card)
   })
 }
+
+// open + close modal
 
 function openChooseModalForAssign(empIdOrZone) {
   const modal = document.getElementById('chooseEmpModal');
@@ -171,6 +175,8 @@ function closeChooseModal() {
   document.getElementById('chooseEmpModal').classList.remove('active')
 }
 
+// open profile
+
 function openProfile(id) {
   const s = staff.find(x => x.id === id);
   if (!s) return;
@@ -198,6 +204,8 @@ function openProfile(id) {
 function closeProfile() {
   document.getElementById('profileModal').classList.remove('active')
 }
+
+// assign and remove from zone
 
 function assignToZone(empId, zoneId) {
   assignments[zoneId] = assignments[zoneId] || [];
