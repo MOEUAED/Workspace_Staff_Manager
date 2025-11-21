@@ -176,3 +176,31 @@ function closeChooseModal() {
   document.getElementById('chooseEmpModal').classList.remove('active')
 }
 
+
+function openProfile(id) {
+  const s = staff.find(x => x.id === id);
+  if (!s) return;
+  document.getElementById('profilePic').src = s.photo || 'assets/img/avatar_h2.jpg';
+  document.getElementById('profileName').textContent = s.name;
+  document.getElementById('profileRole').textContent = s.role;
+  document.getElementById('profileEmail').textContent = s.email || '';
+  document.getElementById('profilePhone').textContent = s.phone || '';
+  const expC = document.getElementById('profileExperiences');
+  expC.innerHTML = '';
+  (s.experiences || []).forEach(ex => {
+    const d = document.createElement('div');
+    d.style.padding = '8px';
+    d.style.borderRadius = '8px';
+    d.style.border = '1px solid #eef4ff';
+    d.style.marginBottom = '8px';
+    d.innerHTML = `<strong>${ex.company} — ${ex.position}</strong><div style="color:var(--muted)">${ex.start} → ${ex.end||'Présent'}</div>`;
+    expC.appendChild(d)
+  });
+  const loc = Object.entries(assignments).find(([k, v]) => v.includes(id));
+  document.getElementById('profileLocation').textContent = loc ? zonesDef.find(z => z.id === loc[0]).name : 'Non assigné';
+  document.getElementById('profileModal').classList.add('active')
+}
+
+function closeProfile() {
+  document.getElementById('profileModal').classList.remove('active')
+}
