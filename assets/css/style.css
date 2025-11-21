@@ -84,7 +84,7 @@ main {
     flex-direction: column;
     gap: 10px;
     max-height: 65vh;
-    overflow: auto
+    overflow: auto ;
 }
 
 .staff-card {
