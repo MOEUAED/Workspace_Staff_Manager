@@ -56,6 +56,7 @@ const zonesDef = [{
   }
 ]
 
+// locale storage + render zone and staff assignments
 
 let staff = JSON.parse(localStorage.getItem('ws_staff') || '[]')
 let assignments = JSON.parse(localStorage.getItem('ws_assign') || '{}')
@@ -92,6 +93,8 @@ function renderZones() {
   })
 }
 
+//  display and manage unassigned staff
+
 function renderUnassigned() {
   const ul = document.getElementById('unassignedList');
   ul.innerHTML = '';
@@ -111,3 +114,65 @@ function renderUnassigned() {
     ul.appendChild(card)
   })
 }
+
+// Implemented zone/employee selection modals with assignment logic 
+
+function openChooseModalForAssign(empIdOrZone) {
+  const modal = document.getElementById('chooseEmpModal');
+  const list = document.getElementById('empListForRoom');
+  list.innerHTML = '';
+  let zoneId = '',
+    mode = 'zone';
+  if (empIdOrZone.startsWith('z:')) {
+    zoneId = empIdOrZone.slice(2)
+  }
+  if (zoneId) {
+    const z = zonesDef.find(z => z.id === zoneId);
+    document.getElementById('chooseZoneName').textContent = z.name;
+    const candidates = staff.filter(s => !(Object.values(assignments).flat()).includes(s.id) && (z.rule(s) || s.role === 'manager'));
+    if (candidates.length === 0) {
+      list.innerHTML = '<div class="empty-note">Aucun employé éligible</div>'
+    } else {
+      candidates.forEach(s => {
+        const item = document.createElement('div');
+        item.className = 'staff-card';
+        item.innerHTML = `<img src="${s.photo||'assets/img/avatar_h2.jpg'}"><div class="staff-meta"><div class="staff-name">${s.name}</div><div class="staff-role">${s.role}</div></div><div><button class="btn btn-primary" data-assign="${s.id}" data-zone="${z.id}">Assigner</button></div>`;
+        item.querySelector('[data-assign]').addEventListener('click', e => {
+          assignToZone(s.id, z.id);
+          closeChooseModal()
+        });
+        list.appendChild(item)
+      })
+    }
+  } else {
+    document.getElementById('chooseZoneName').textContent = '';
+    list.innerHTML = '<div class="empty-note">Erreur</div>'
+  }
+  modal.classList.add('active')
+}
+
+function openChooseModalForAssign_empId(empId) {
+  const modal = document.getElementById('chooseEmpModal');
+  const list = document.getElementById('empListForRoom');
+  list.innerHTML = '';
+  document.getElementById('chooseZoneName').textContent = 'Sélectionnez une zone';
+  zonesDef.forEach(z => {
+    const btnAllowed = (z.rule(staff.find(s => s.id === empId)) || staff.find(s => s.id === empId).role === 'manager');
+    const count = (assignments[z.id] || []).length;
+    const disabled = count >= z.max || !btnAllowed;
+    const el = document.createElement('div');
+    el.className = 'staff-card';
+    el.innerHTML = `<div style="flex:1"><div style="font-weight:700">${z.name}</div><div style="font-size:13px;color:var(--muted)">${z.desc}</div></div><div><button class="btn ${disabled?'btn-ghost':'btn-primary'}" data-zoneassign="${z.id}" ${disabled?'disabled':''}>${disabled?'Non disponible':'Assigner'}</button></div>`;
+    el.querySelector('[data-zoneassign]').addEventListener('click', () => {
+      assignToZone(empId, z.id);
+      closeChooseModal()
+    });
+    list.appendChild(el)
+  })
+  modal.classList.add('active')
+}
+
+function closeChooseModal() {
+  document.getElementById('chooseEmpModal').classList.remove('active')
+}
+
